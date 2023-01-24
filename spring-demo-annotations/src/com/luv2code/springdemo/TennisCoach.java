@@ -8,13 +8,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class TennisCoach implements Coach {
 
+	private FortuneService fortuneService;
+
 	/*
 	 * Qualifier annotation is used to specify what implementation of the
 	 * FortuneService interface you would like to inject in this private field.
 	 */
 	@Autowired
-	@Qualifier("randomFortuneService")
-	private FortuneService fortuneService;
+	public TennisCoach(@Qualifier("randomFortuneService") FortuneService myFortuneService) {
+		fortuneService = myFortuneService;
+	}
 
 	/*
 	 * @Autowired public TennisCoach(FortuneService theFortuneService) {
@@ -39,8 +42,7 @@ public class TennisCoach implements Coach {
 	// injection with Autowired.
 	// tell Spring we want to autowire this dependency using setter method.
 	/*
-	 * @Autowired 
-	 * public void setFortuneService(FortuneService theFortuneService) {
+	 * @Autowired public void setFortuneService(FortuneService theFortuneService) {
 	 * System.out.println(">>In TennisCoach: setFortuneService"); fortuneService =
 	 * theFortuneService; }
 	 */
