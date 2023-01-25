@@ -1,0 +1,16 @@
+Bean Scopes
+	- Scope refers to the lifecycle of a bean
+	- how the bean is being created
+	- how its being shared
+	- how long does it live for
+	
+Default scope for all beans is Singleton.
+	- It is cached in memory
+	- Spring container only creates one instance of the bean, by default
+	- All requests for the bean will return a SHARED instance to the SAME bean.
+If you create two objects of the same class with different variable names, they will share the same reference in the spring 
+object container.
+
+Using annotations to specify the scope you would like your component to have. @Scope
+Setting the scope to prototype, you will get a new object for each request when using context.getbean(object, class of object)
+
