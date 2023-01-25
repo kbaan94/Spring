@@ -8,13 +8,13 @@ public class AnnotationBeanScopeDemoApp {
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-		Coach theCoach = context.getBean("tennisCoach", Coach.class);
-		Coach theOtherCoach = context.getBean("tennisCoach", Coach.class);
+		//Coach theCoach = context.getBean("tennisCoach", Coach.class);
+		//Coach theOtherCoach = context.getBean("tennisCoach", Coach.class);
 
-		System.out.println(theCoach.getDailyFortune());
+		//System.out.println(theCoach.getDailyFortune());
 		
-		boolean result = (theCoach == theOtherCoach);
-		System.out.println(result);
+		//boolean result = (theCoach == theOtherCoach);
+		//System.out.println(result);
 		context.close();
 
 	}

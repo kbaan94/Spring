@@ -14,3 +14,4 @@ object container.
 Using annotations to specify the scope you would like your component to have. @Scope
 Setting the scope to prototype, you will get a new object for each request when using context.getbean(object, class of object)
 
+If you are using @Scope("prototype") then Spring will not call the Predestroy by default.

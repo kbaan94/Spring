@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +20,20 @@ public class RandomFortuneServiceFromFile implements FortuneService {
 
 	public RandomFortuneServiceFromFile() {
 		System.out.println("Inside RandomFortuneServiceFromFile: Constructor");
+	}
 
+	@Override
+	public String getFortune() {
+
+		int index = myRandom.nextInt(listOfLines.size());
+		String tempFortune = listOfLines.get(index);
+
+		return tempFortune;
+	}
+
+	@PostConstruct
+	public void beforeCreation() {
+		System.out.println("Inside beforeCreation for RandomFortuneServiceFromFile");
 		listOfLines = new ArrayList<String>();
 
 		try {
@@ -37,16 +52,6 @@ public class RandomFortuneServiceFromFile implements FortuneService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	}
-
-	@Override
-	public String getFortune() {
-
-		int index = myRandom.nextInt(listOfLines.size());
-		String tempFortune = listOfLines.get(index);
-
-		return tempFortune;
 	}
 
 }

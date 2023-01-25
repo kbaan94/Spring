@@ -10,6 +10,10 @@ public class BasketballCoach implements Coach {
 	@Autowired
 	@Qualifier("randomFortuneServiceFromFile")
 	FortuneService fortuneService;
+	
+	public BasketballCoach() {
+		System.out.println("Inside BasketballCoach Constructor");
+	}
 
 	@Override
 	public String getDailyWork() {

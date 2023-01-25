@@ -1,13 +1,14 @@
 package com.luv2code.springdemo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 // Spring will automatically register this bean
 @Component
-@Scope("prototype")
 public class TennisCoach implements Coach {
 
 	private FortuneService fortuneService;
@@ -18,7 +19,7 @@ public class TennisCoach implements Coach {
 	 */
 	@Autowired
 	public TennisCoach(@Qualifier("randomFortuneService") FortuneService myFortuneService) {
-		System.out.println("Inside TennishCoach constructor using DI with Qualifier");
+		System.out.println("Inside TennishCoach constructor, using qualifire to inject randomFortuneService");
 		fortuneService = myFortuneService;
 	}
 
@@ -39,6 +40,18 @@ public class TennisCoach implements Coach {
 	public String getDailyFortune() {
 		// TODO Auto-generated method stub
 		return fortuneService.getFortune();
+	}
+
+	// define init method
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println(">>TennisCoach: inside of domyStartupStuff");
+	}
+	
+	//define destroy method
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		System.out.println(">>TennisCoach: inside of doMyCleanupStuff");
 	}
 
 	// define setter method for injecting fortuneService. Configure dependency
